@@ -1,0 +1,41 @@
+public class HelloWorld{
+
+     public static void main(String []args){
+         
+         int arr[]={5,6,4,7,9,8};
+         
+         int profit = algoStockPrice(arr);
+         
+        System.out.println(profit);
+     }
+
+   static int algoStockPrice(int [] arr)
+    {
+    
+        int potentialProfit = arr[1] - arr[0];
+        int profit = potentialProfit;
+        int profitMax = potentialProfit;
+        
+        int cursor = 0;
+        int goldenCursor = 0;
+
+        for(int i = 1; i<arr.length; i++)
+        {
+            //Each iteration we check a new potential Profit
+            potentialProfit = arr[i] - arr[i - 1];
+            
+            if (profit>0)
+             profit += potentialProfit;
+             else
+            {
+                profit = potentialProfit;
+                cursor = i;  }
+
+            if(profitMax <= profit)
+            {
+                profitMax = profit ;
+                goldenCursor = i;
+            } }
+        return profitMax;
+    }
+}
