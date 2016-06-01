@@ -1,0 +1,84 @@
+public class undoRedoOperation <E> extends Stack <E>{
+    
+    // We are going to use <E>, functionnal for any element.
+    // Creation of 2 stack LIFO, last in First Out
+     private Stack stackRedo  
+     private Stack stackUndo
+     
+     //Construct, initialise 2 stack
+     public undoRedoOperation()
+     {
+        Stack stackRedo = new Stack();
+        Stack stackUndo = new stack()
+     }
+     
+     public boolean allowUndo()
+     {return !stackUndo.isEmpty();}
+     public boolean allowRedo()
+     {return !stackRedo.isEmpty();}
+     
+  
+        
+    // We going to implement the undo method
+    public void doUndo()
+    {
+        if (!allowUndo())
+            throw new EmptyStackException();
+
+        Object doAction = stackUndo.pop();
+        if (action.equals("push"))
+        {
+            E element = super.pop();
+            stackRedo.push(element);
+            stackRedo.push("push");
+        }
+            
+         else
+         {
+            E element = (E) undoStack.pop();
+            super.push(element);
+            stackRedo.push("pop");
+         }
+        }
+        
+        public void doRedo()
+        {
+            if (!canRedo())
+             throw new EmptyStackException();
+             
+            Object action = stackRedo.pop();
+            if (action.equals("push"))
+            {
+               E element = (E) stackRedo.pop();
+               super.push(element);
+               stackUndo.push("push");
+            }
+            else
+            {
+               E element = super.pop();
+               stackUndo.push(element);
+               stackUndo.push("pop");
+            }
+        }
+        
+		//FOR EACH USER OPERATION ==> undo stack
+           
+     public E push(E element)
+        {
+            super.push(element);
+            stackUndo.push("push");
+            stackRedo.clear();
+            return element;
+        }    
+     
+     public E pop()
+        {
+            E element = super.pop();
+            stackUndo.push(element);
+            stackUndo.push("pop");
+            stackRedo.clear();
+            return element;
+        }     
+        
+        
+    }
