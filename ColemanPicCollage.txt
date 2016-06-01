@@ -1,0 +1,45 @@
+public class HelloWorld{
+
+     public static void main(String []args){
+         
+         double test = 1;
+          test = AlgoColeman("I love Piccolage ! You love Piccolage? We lovePiccolage.");
+         
+        System.out.println(test);
+     }
+
+   static double AlgoColeman (String text)
+    {
+        
+        
+        // First we have to know how many words we have 
+        String[] arrayWord = text.split(" ");
+        int numberWords = arrayWord.length;
+        
+       
+
+        // Calculate Letter
+        int numberCaracter = 0;
+        for (String mot : arrayWord)
+        {
+                numberCaracter += mot.length();
+        }
+                
+                
+        // Second, we want to know how many sentences we have
+        // we have to take care of exception like ?, !
+        text = text.replace("?", ".");
+        text = text.replace("!", ".");
+  
+        // We can now calculate the number of sentences
+        String[] arraySentence = text.split("\\.");
+        int numberSentence = arraySentence.length;   
+     
+        
+        float L = (numberCaracter/(float)numberWords)*100;
+        float S = (numberSentence/(float)numberWords)*100;
+        float variable = (float)15.9;    
+        return  0.0588 * L - 0.296 * S - 15.8 ;
+    }
+
+}
